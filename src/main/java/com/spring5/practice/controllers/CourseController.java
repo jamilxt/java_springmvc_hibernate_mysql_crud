@@ -59,9 +59,10 @@ public class CourseController {
 	}
 
 	@GetMapping("/course/edit")
-	public String editCourseByCourseCode(Model model, @RequestParam("courseCode") String courseCode) {
+	public String editCourseByCourseCode(Model model, @RequestParam("courseId") long courseId) {
 
-		model.addAttribute("course", courseService.getCourseByCourseCode(courseCode));
+		model.addAttribute("pageTitle", "Edit Course");
+		model.addAttribute("course", courseService.getCourseByCourseId(courseId));
 		// model.addAttribute("course", new Course());
 
 		return "course/edit";
@@ -72,7 +73,7 @@ public class CourseController {
 		courseService.saveEditedCourse(course);
 		model.addAttribute("message", "Course saved successfully");
 
-		return "redirect:/course/courses";
+		return "redirect:/course/show-all";
 	}
 
 	@GetMapping("/course/delete")

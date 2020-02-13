@@ -27,7 +27,7 @@
 				<tr>
 					<th>${ course.courseId }</th>
 					<th>${ course.courseName }</th>
-					<th><a href="edit?id=${ course.courseId }"
+					<th><a href="edit?courseId=${ course.courseId }"
 						class="btn btn-success">Edit</a></th>
 				</tr>
 			</c:forEach>

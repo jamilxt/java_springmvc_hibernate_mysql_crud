@@ -1,4 +1,4 @@
-package com.spring5.practice.config;
+package com.spring5.practice.config.persistence;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

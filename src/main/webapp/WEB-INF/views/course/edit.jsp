@@ -2,24 +2,34 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Edit Course</title>
-</head>
-<body>
 
-	<h1>Edit Course</h1>
+<!-- HEADER -->
+<jsp:include page="../common/header.jsp" />
+
+<!-- MAIN CONTENT OF THE PAGE -->
+<div class="container">
+
+	<h3 class="mt-3 mb-3">${ pageTitle }
+		<a href="${pageContext.request.contextPath }/course/show-all"
+			class="btn btn-primary float-right">Course List</a>
+	</h3>
 
 	<form:form action="${pageContext.request.contextPath }/course/edit"
 		modelAttribute="course">
-		<form:input path="courseId" value="${courseId}" hidden="hidden"/>
-		<form:input path="courseName" value="${courseName}" />
-		<br>
 
-		<input type="submit" name="submit" value="Edit Course">
+		<form:input path="courseId" value="${courseId}" hidden="hidden" />
+		<div class="form-group">
+			<label>Course Name</label>
+			<form:input path="courseName" class="form-control"
+				value="${courseName}" />
+		</div>
+
+		<input type="submit" name="submit" value="Edit"
+			class="btn btn-primary btn-lg btn-block">
 	</form:form>
 
-</body>
-</html>
+</div>
+
+
+<!-- FOOTER -->
+<jsp:include page="../common/footer.jsp" />

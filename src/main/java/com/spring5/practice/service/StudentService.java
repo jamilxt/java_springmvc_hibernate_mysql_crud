@@ -11,7 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring5.practice.config.HibernateConfig;
+import com.spring5.practice.config.persistence.HibernateConfig;
 import com.spring5.practice.dtos.StudentDto;
 import com.spring5.practice.model.Course;
 import com.spring5.practice.model.Student;

@@ -6,7 +6,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring5.practice.config.HibernateConfig;
+import com.spring5.practice.config.persistence.HibernateConfig;
 import com.spring5.practice.exceptions.ResourceAlreadyExistsException;
 import com.spring5.practice.model.Course;
 
@@ -61,17 +61,18 @@ public class CourseService {
 		}
 	}
 
-	public void saveEditedCourse(Course c) {
+	public void saveEditedCourse(Course course) {
 
 		var session = hibernateConfig.getSession();
 		Transaction tx = session.getTransaction();
 		if (!tx.isActive())
 			tx = session.beginTransaction();
 
-		session.update(c);
-		tx.commit();
+		checkCourseInDb(course);
+		course.setCourseCode(course.getCourseName().substring(0, 2));
+		session.update(course);
 		session.flush();
-
+		tx.commit();
 	}
 
 	/*
@@ -79,6 +80,20 @@ public class CourseService {
 	 * courses.size(); i++) { if(courses.get(i).getCourseCode().equals(courseCode))
 	 * { courses.remove(i); break; } } }
 	 */
+
+	public Course getCourseByCourseId(long courseId) {
+
+		var session = hibernateConfig.getSession();
+		Transaction tx = session.getTransaction();
+		if (!tx.isActive())
+			tx = session.beginTransaction();
+
+		var query = session.getEntityManagerFactory().createEntityManager()
+				.createQuery("select c from Course c where courseId=:courseId ", Course.class);
+		query.setParameter("courseId", courseId);
+		Course course = query.getResultList().get(0);
+		return course;
+	}
 
 	public Course getCourseByCourseCode(String courseCode) {
 

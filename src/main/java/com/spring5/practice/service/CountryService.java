@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring5.practice.config.HibernateConfig;
+import com.spring5.practice.config.persistence.HibernateConfig;
 import com.spring5.practice.exceptions.ResourceAlreadyExistsException;
 import com.spring5.practice.exceptions.ResourceNotFoundException;
 import com.spring5.practice.model.Country;
