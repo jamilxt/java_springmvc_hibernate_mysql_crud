@@ -19,4 +19,9 @@ public class RootController {
 		model.addAttribute("error", error);
 		return "auth/login";
 	}	
+	
+	@GetMapping("/403")
+	public String _403() {
+		return "403";
+	}
 }
